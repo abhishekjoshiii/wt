@@ -1,0 +1,51 @@
+<!--practical program in filter -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="angular.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body ng-app="mymodule">
+    <div ng-controller="datacontroller">
+         <input type="text" ng-model="search.firstname" placeholder="search by firstname"/>
+        <input type="text" ng-model="search.lastname" placeholder="search by lastname"/>
+        <input type="text" ng-model="search.salary" placeholder="search by salary"/>
+        <br>
+        <br>
+        
+        <table border="2">
+            
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>gender</th>
+                    <th>salary</th>
+                </tr>
+            
+            <tbody>
+                <tr ng-repeat="employee in employees | filter:search | orderBy:'-salary' ">
+                    <td>{{employee.firstname | uppercase}}</td>
+                    <td>{{employee.lastname | lowercase}}</td>
+                    <td>{{employee.gender}}</td>
+                    <td>{{employee.salary | currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
+
+
+*****script.js*******
+    var app=angular.module("mymodule",[]);
+app.controller ("datacontroller", function($scope)
+{
+    var listemployees = [
+        {firstname: "Abhishek", lastname:"Joshi", gender:"Male", salary:9500},
+        {firstname: "Archana", lastname:"Biju", gender:"Female", salary:6520},
+        {firstname: "Sumit", lastname:"Chandale", gender:"Male", salary:8452}
+    ];
+    $scope.employees=listemployees;
+});

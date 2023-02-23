@@ -1,0 +1,25 @@
+const http=require('http');
+const server=http.createServer(function(req,res)
+{console.log("Url is",req.url);
+
+if(req.url=='/')
+{
+    res.write("<h1>Greeting of the day<h1>");
+    res.end();
+}
+else if(req.url=='/about')
+{
+    res.write("<h1>Greeting of the day in about</h1>");
+    res.end();
+
+}
+else{
+    res.write("<h1>Wrong url</h1>")
+    res.end();
+}
+})
+server.listen(3004,function(){
+   console.log("Server is lietining on the port",3004);
+        
+})
+/*console.log("methods are",http.STATUS_CODES);*/

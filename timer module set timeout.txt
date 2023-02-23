@@ -1,0 +1,10 @@
+ /**perfrom non-blocking i/o  operations*/
+/**anonomus function */
+const hi=()=>console.log('hi')
+const hello=()=>console.log('hello')
+const hey=()=>{
+    console.log('hey')
+    setTimeout(hi,1000)         /**without timeout  hi()  hello() */
+    setTimeout(hello,3000)
+}
+hey()

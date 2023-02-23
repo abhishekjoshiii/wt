@@ -1,0 +1,109 @@
+**angular.html***
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <title>
+        Student Form 
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+    <body ng-app="studentApp" ng-controller="studentctrl">
+        <center>
+            <h1>Student Form</h1>
+        </center>
+        <form class="form-horizontal" ng-submit="submitform()" role="form" name="myForm">
+        <div class="form-group">
+            <label for="FirstName" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="FirstName" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="LastName" class="col-sm-3 control-label">LAst Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="lastName" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="dob" class="col-sm-3 control-label">DOB</label>
+            <div class="col-sm-6">
+                <input type="Date" class="form-control" ng-model="dob" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+      
+        
+        <div class="form-group">
+            <label for="gender" class="col-sm-3 control-label">Gender</label>
+            <div class="col-sm-6">
+                <select class="form-control" ng-model="gender" required>
+                    <option value="Female" selected>Female</option>
+                    <option value="Male">Male</option>
+                  </select>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="mobno" class="col-sm-3 control-label">Mobile NO</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" ng-model="mobno" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+      
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" ng-model="email" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+       
+        <div class="form-group">
+            <label for="fee" class="col-sm-3 control-label">Fee</label>
+            <div class="col-sm-6">
+                <input type="number" class="form-control" ng-model="fee" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary mb-3">Submit </button>
+            <div class="col-sm-6"></div>
+        </div>
+
+    </form> 
+    <script src="form.js"></script>
+    </body>
+</html>
+
+
+
+***form.js****
+var studentApp = angular.module("studentApp",[])
+studentApp.controller("studentctrl",function($scope){
+
+    $scope.submitform=function(){
+
+        console.log("First Name: "+$scope.FirstName);
+        console.log("Last Name: "+$scope.lastName);
+        console.log("Date of Birth: "+$scope.dob);
+        console.log("Gender: "+$scope.gender);
+        console.log("Mobile No: "+$scope.mobno);
+        console.log("Email Id: "+$scope.email);
+        console.log("Fee: "+$scope.fee);
+       
+    };
+});

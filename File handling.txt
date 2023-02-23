@@ -1,0 +1,54 @@
+var http=require('http');
+var fs=require('fs');
+http.createServer(
+    function(request,response){
+        var content="<h1>Welcome</h1> <p>This is content </p>";
+        fs.writeFile("kal.html",content,
+        function(err){
+            if(err)throw err;
+            console.log('Data Saved');
+        });
+        fs.readFile('kal.html',function(err,data)
+        {
+            if(err)throw err;
+            response.writeHead('200',{'Context-Type':'text/html'});
+            response.write(data);
+            response.end();
+        })
+    }).listen(8080);
+
+fs.open('kal.html','a',function(err,fd)
+{
+    fs.appendFile(fd,'<p>This is text</p>',
+    function(err){
+        if(err) throw err;
+        console.log('Data updated successfully...');
+
+        fs.close(fd,function(err){
+            if(err)throw err;
+        });
+    });
+});
+
+
+
+
+
+***for deleteing**
+var fs = require('fs');
+
+fs.unlink('mynewfile2.txt',
+function(err){
+    if (err) throw err;
+    console.log('File deleted!');
+});
+
+
+
+***For rename***
+var fs=require('fs');
+fs.rename('mynewfile.txt','renamedfile.txt',
+function(err){
+    if(err)throw err;
+    console.log('file renamed');
+});

@@ -1,0 +1,64 @@
+***index.html***
+
+<html>
+<head>
+    <title> test </title>
+    
+</head>
+    <body>
+        <form action="/submit" method="POST">
+
+            <center>
+                <h1>Student Form</h1>
+                First Name:<input type="text" id="firstname" name="firstname"/> <br/>
+                Last Name:<input type="text" id="lastname" name="lastname"/> <br/>
+                Last Name:<input type="text" id="lastname" name="lastname"/> <br/>
+                City:<input type="city" id="city" name="city"/> <br/><br>
+                
+                <button type="submit" id="btn" value="submit">Submit</button>
+
+            </center>
+
+        </form>
+    </body>
+</html>
+
+
+**server.js***
+var express = require("express");
+var app     = express();
+var path    = require("path");
+var mysql = require('mysql');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "pract10"
+});
+app.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
+
+});
+app.post('/submit',function(req,res){
+
+  var name=req.body.name;
+  var city=req.body.city;
+  
+  con.connect(function(err) {
+  if (err) throw err;
+  var sql = "INSERT INTO person (name,city) VALUES ('"+name+"','"+city+"')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+     res.end();
+  });
+  });
+})
+app.listen(3000);

@@ -1,0 +1,26 @@
+***directive.html***
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="angular.min.js"></script>
+<script src="angu.js"></script>
+</head>
+<body>
+<div ng-app="firstapp" >
+<p>Enter your First Name: <input type="text" ng-model="fname"></p>
+<p>Enter your Last Name: <input type="text" ng-model="lname"></p>
+<p ng-bind="fname"></p>
+<p ng-bind="lname"></p>
+<p ng-bind="fname+ ' '+lname"></p>
+
+</div>
+</div>
+</body>
+</html>
+
+***angu.js***
+angular.module('firstapp',[]).controller('firstctrl',($scope)=>{
+    $scope.fname="Abhishek";
+    $scope.lname="Joshi";
+})

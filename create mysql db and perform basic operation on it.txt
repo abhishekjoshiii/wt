@@ -1,0 +1,109 @@
+*****************Con1.js**
+var mysql=require('mysql');
+var con=mysql.createConnection({
+host:"localhost",
+user:"root",
+    password:""
+});
+con.connect(function(err){
+    if(err) throw err;
+    console.log("Connected");
+});
+
+
+
+*********createdb.js***********
+var mysql=require('mysql');
+var con=mysql.createConnection({
+host:"localhost",
+user:"root",
+    password:"",
+    port:3306, 
+});
+con.connect(function(err){
+    if(err) throw err;
+    console.log("Connected");
+con.query("CREATE DATABASE SamInfo", function(err,result){
+        if (err) throw err;
+console.log("Database created");    
+    });
+});
+
+
+
+
+*******McasemCreate.js*************
+var mysql=require('mysql');
+var con=mysql.createConnection({
+host:"localhost",
+user:"root",
+    password:"",
+    port:3306,
+   database:"SamInfo"
+});
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    //Create table
+    var sql = "CREATE TABLE MCAsem (roll_noint,name VARCHAR(10),division VARCHAR(5),email VARCHAR(20),mobileno VARCHAR(20),gender VARCHAR(10))";
+con.query(sql,function (err, result) {
+      if (err) throw err;
+console.log("Table created");
+ });
+
+});
+
+
+
+******McasemInsert.js*******
+var mysql=require('mysql');
+var con=mysql.createConnection({
+host:"localhost",
+user:"root",
+    password:"",
+    port:3306,
+   database:"SamInfo"
+});
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql = "INSERT INTO MCAsem(roll_no,name,division,email,mobileno,gender) VALUES ?";
+    var values=[[1,'Archana','A','archana@gmail.com','8459745698','Female'],
+                 [2,'Puja','A','pooja@gmail.com','7859745698','Female'],
+                 [3,'Sumit','B','sumit@gmail.com','7894545698','Male'],
+                 [4,'Abhishek','B','abhishek@gmail.com','9859745698','Male'],
+                 [5,'Sourabh','A','sourabh@gmail.com','8959745698','Male'],
+                 [6,'Prathmesh','B','prathmesh@gmail.com','9894545698','Male'],
+                 [7,'Harshal','B','harshal@gmail.com','7899745698','Male'],
+                 [8,'Gayatri','A','gayatri@gmail.com','9869745698','Female'],
+                 [9,'Tanuja','A','thanu@gmail.com','7859785698','Female'],
+                 [10,'Sidddhu','A','siddhu@gmail.com','9559745698','Male'],
+              ];
+con.query(sql,[values],function (err, result) {
+      if (err) throw err;
+console.log("Value inserted");
+    });
+  });
+
+
+*****mcaselect.js********
+var mysql=require('mysql');
+var con=mysql.createConnection({
+host:"localhost",
+user:"root",
+    password:"",
+    port:3306,
+   database:"SamInfo"
+});
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    //Create table
+con.query("SELECT * FROM MCAsem WHERE gender ='Male' ", function (err,result,fields){
+        if (err) throw err;
+        console.log(result);
+    }); });
+
+
+
+
